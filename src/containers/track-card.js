@@ -56,6 +56,7 @@ const TrackCard = ({ track }) => {
     >
       <CardContent>
         <CardImageContainer>
+          <ColorOverlay />
           <CardImage src={thumbnail} alt={title} />
         </CardImageContainer>
         <CardBody>
@@ -105,6 +106,10 @@ const CardContainer = styled(Link)({
   ':hover': {
     backgroundColor: colors.pink.lightest,
   },
+  ':hover img': {
+    transform: 'scale(1.3)',
+    transition: 'all .3s ease-out',
+  },
   cursor: 'pointer',
   textDecoration: 'none',
 });
@@ -125,17 +130,25 @@ const CardTitle = styled.h3({
   flex: 1,
 });
 
+const ColorOverlay = styled.div({
+  background: 'rgba(250,0,150,0.20)',
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  zIndex: 3,
+});
+
 const CardImageContainer = styled.div({
-  height: 220,
+  height: '220px',
   position: 'relative',
-  '::after': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    background: 'rgba(250,0,150,0.20)',
+  overflow: 'hidden',
+  objectFit: 'cover',
+  img: {
+    height: '100%',
+    width: '100%',
+    objectFit: 'cover',
   },
 });
 
