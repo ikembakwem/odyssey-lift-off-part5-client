@@ -9,7 +9,9 @@ import { gql, useMutation } from '@apollo/client';
  * Mutation to increment a track's number of views
  */
 const INCREMENT_TRACK_VIEWS = gql`
-  mutation IncrementTrackViewsMutation($incrementTrackViewsId: ID!) {
+  mutation IncrementTrackViewsMutation(
+    $incrementTrackViewsId: ID!
+  ) {
     incrementTrackViews(id: $incrementTrackViewsId) {
       code
       success
@@ -27,18 +29,31 @@ const INCREMENT_TRACK_VIEWS = gql`
  * for each track populating the tracks grid homepage.
  */
 const TrackCard = ({ track }) => {
-  const { title, thumbnail, author, length, modulesCount, id } = track;
+  const {
+    title,
+    thumbnail,
+    author,
+    length,
+    modulesCount,
+    id,
+  } = track;
 
-  const [incrementTrackViews] = useMutation(INCREMENT_TRACK_VIEWS, {
-    variables: { incrementTrackViewsId: id },
-    // to observe what the mutation response returns
-    onCompleted: (data) => {
-      console.log(data);
-    },
-  });
+  const [incrementTrackViews] = useMutation(
+    INCREMENT_TRACK_VIEWS,
+    {
+      variables: { incrementTrackViewsId: id },
+      // to observe what the mutation response returns
+      onCompleted: (data) => {
+        // console.log(data);
+      },
+    }
+  );
 
   return (
-    <CardContainer to={`/track/${id}`} onClick={incrementTrackViews}>
+    <CardContainer
+      to={`/track/${id}`}
+      onClick={incrementTrackViews}
+    >
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail} alt={title} />
@@ -50,7 +65,8 @@ const TrackCard = ({ track }) => {
             <AuthorAndTrack>
               <AuthorName>{author.name}</AuthorName>
               <TrackLength>
-                {modulesCount} modules - {humanReadableTimeFromSeconds(length)}
+                {modulesCount} modules -{' '}
+                {humanReadableTimeFromSeconds(length)}
               </TrackLength>
             </AuthorAndTrack>
           </CardFooter>

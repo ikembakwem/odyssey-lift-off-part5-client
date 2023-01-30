@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from '@reach/router';
-import { colors, IconArrowRight, IconDoubleArrowRight } from '../styles';
+import {
+  colors,
+  IconArrowRight,
+  IconDoubleArrowRight,
+} from '../styles';
 import { humanReadableTimeFromSeconds } from '../utils/helpers';
 
 /**
@@ -20,15 +24,26 @@ const ModulesNav = ({ module, track }) => {
         {track.modules.map((navModule) => (
           <ModuleListItem key={`module_${navModule.id}`}>
             <div>
-              <ModuleNavStyledLink to={`../${navModule.id}`}>
-                <ModuleListItemContent isActive={navModule.id === module.id}>
+              <ModuleNavStyledLink
+                to={`../${navModule.id}`}
+              >
+                <ModuleListItemContent
+                  isActive={navModule.id === module.id}
+                >
                   {navModule.id === module.id ? (
                     <IconDoubleArrowRight width="14px" />
                   ) : (
-                    <IconArrowRight width="14px" weight="thin" />
+                    <IconArrowRight
+                      width="14px"
+                      weight="thin"
+                    />
                   )}
                   <div>{navModule.title}</div>
-                  <div>{humanReadableTimeFromSeconds(navModule.length)}</div>
+                  <div>
+                    {humanReadableTimeFromSeconds(
+                      navModule.durationInSeconds
+                    )}
+                  </div>
                 </ModuleListItemContent>
               </ModuleNavStyledLink>
             </div>
@@ -97,8 +112,12 @@ const ModuleNavStyledLink = styled(Link)({
 });
 
 const ModuleListItemContent = styled.div((props) => ({
-  backgroundColor: props.isActive ? colors.black.base : colors.black.light,
-  color: props.isActive ? colors.silver.lighter : colors.silver.darker,
+  backgroundColor: props.isActive
+    ? colors.black.base
+    : colors.black.light,
+  color: props.isActive
+    ? colors.silver.lighter
+    : colors.silver.darker,
   minHeight: 80,
   padding: '10px 20px',
   display: 'flex',
@@ -107,7 +126,9 @@ const ModuleListItemContent = styled.div((props) => ({
   fontSize: '1.1em',
   flex: 1,
   ':hover': {
-    backgroundColor: props.isActive ? colors.black.dark : colors.black.base,
+    backgroundColor: props.isActive
+      ? colors.black.dark
+      : colors.black.base,
     color: 'white',
   },
 }));

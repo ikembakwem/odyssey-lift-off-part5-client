@@ -15,13 +15,13 @@ const GET_TRACK = gql`
         photo
       }
       thumbnail
-      length
+      durationInSeconds
       modulesCount
       numberOfViews
       modules {
         id
         title
-        length
+        durationInSeconds
       }
       description
     }
@@ -39,7 +39,11 @@ const Track = ({ trackId }) => {
 
   return (
     <Layout>
-      <QueryResult error={error} loading={loading} data={data}>
+      <QueryResult
+        error={error}
+        loading={loading}
+        data={data}
+      >
         <TrackDetail track={data?.track} />
       </QueryResult>
     </Layout>

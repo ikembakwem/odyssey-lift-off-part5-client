@@ -15,11 +15,20 @@ import MarkDown from './md-content';
 
 /**
  * Track Detail component renders the main content of a given track:
- * author, length, number of views, modules list, among other things.
+ * author, durationInSeconds, number of views, modules list, among other things.
  * It provides access to the first module of the track.
  */
 const TrackDetail = ({ track }) => {
-  const { title, description, thumbnail, author, length, modulesCount, modules, numberOfViews } = track;
+  const {
+    title,
+    description,
+    thumbnail,
+    author,
+    durationInSeconds,
+    modulesCount,
+    modules,
+    numberOfViews,
+  } = track;
 
   return (
     <ContentSection>
@@ -33,7 +42,9 @@ const TrackDetail = ({ track }) => {
             <h4>Track details</h4>
             <IconAndLabel>
               <IconView width="16px" />
-              <div id="viewCount">{numberOfViews} view(s)</div>
+              <div id="viewCount">
+                {numberOfViews} view(s)
+              </div>
             </IconAndLabel>
             <IconAndLabel>
               <IconBook width="14px" height="14px" />
@@ -41,7 +52,11 @@ const TrackDetail = ({ track }) => {
             </IconAndLabel>
             <IconAndLabel>
               <IconTime width="14px" />
-              <div>{humanReadableTimeFromSeconds(length)}</div>
+              <div>
+                {humanReadableTimeFromSeconds(
+                  durationInSeconds
+                )}
+              </div>
             </IconAndLabel>
           </DetailItem>
           <DetailItem>
@@ -68,7 +83,11 @@ const TrackDetail = ({ track }) => {
               {modules.map((module) => (
                 <li key={module.title}>
                   <div>{module.title}</div>
-                  <ModuleLength>{humanReadableTimeFromSeconds(module.length)}</ModuleLength>
+                  <ModuledurationInSeconds>
+                    {humanReadableTimeFromSeconds(
+                      module.durationInSeconds
+                    )}
+                  </ModuledurationInSeconds>
                 </li>
               ))}
             </ul>
@@ -182,7 +201,7 @@ const ModuleListContainer = styled.div({
   },
 });
 
-const ModuleLength = styled.div({
+const ModuledurationInSeconds = styled.div({
   marginLeft: 30,
   color: colors.grey.light,
 });
