@@ -4,7 +4,9 @@ import { colors as SKColors } from '@apollo/space-kit/colors';
 import { Global } from '@emotion/core';
 
 const breakpoints = [480, 768, 992, 1200];
-export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+export const mq = breakpoints.map(
+  (bp) => `@media (min-width: ${bp}px)`
+);
 
 export const unit = 8;
 export const widths = {
@@ -32,9 +34,11 @@ const GlobalStyles = () => (
       body: {
         margin: 0,
         padding: 0,
-        fontFamily: "'Source Sans Pro', sans-serif",
+        fontFamily:
+          "'Source Sans Pro', 'Open Sans', sans-serif",
         backgroundColor: colors.background,
         color: colors.text,
+        boxSizing: 'border-box',
       },
       '#root': {
         display: 'flex',
@@ -63,6 +67,14 @@ const GlobalStyles = () => (
         fontSize: 16,
         textTransform: 'uppercase',
         letterSpacing: 4,
+      },
+
+      'ol, ul': {
+        listStyle: 'none',
+      },
+      a: {
+        textDecoration: 'none',
+        color: 'inherit',
       },
     }}
   />

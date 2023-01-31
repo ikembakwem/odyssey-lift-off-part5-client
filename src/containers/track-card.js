@@ -62,7 +62,9 @@ const TrackCard = ({ track }) => {
         <CardBody>
           <CardTitle>{title || ''}</CardTitle>
           <CardFooter>
+          <AuthorImageContainer>
             <AuthorImage src={author.photo} />
+            </AuthorImageContainer>
             <AuthorAndTrack>
               <AuthorName>{author.name}</AuthorName>
               <TrackLength>
@@ -173,11 +175,18 @@ const CardFooter = styled.div({
   flexDirection: 'Row',
 });
 
-const AuthorImage = styled.img({
+const AuthorImageContainer = styled.div({
   height: 30,
-  width: 30,
+  width: 30, 
   marginRight: 8,
-  borderRadius: '50%',
+  objectFit: 'cover',
+  borderRadius: '50%', 
+  overflow: 'hidden'
+})
+
+const AuthorImage = styled.img({
+  height: '100%',
+  width: '100%',
   objectFit: 'cover',
 });
 
@@ -193,5 +202,5 @@ const AuthorName = styled.div({
 });
 
 const TrackLength = styled.div({
-  fontSize: '0.8em',
+  fontSize: '0.8em', 
 });
